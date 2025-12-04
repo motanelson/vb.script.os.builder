@@ -1,4 +1,3 @@
-void kernel_main();
 void clear();
 int xxx=0;
 int yyy=0;
@@ -61,8 +60,11 @@ void putss(char* s){
 	locate(xxx,yyy);
 }
 
-void kernel_main(){
+int main(){
     clear();
     putss("hello world\n\n");
     for(;;);
+}
+int __main(){
+   main();
 }

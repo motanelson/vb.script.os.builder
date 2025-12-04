@@ -3,12 +3,12 @@
 .section .text
 .global _start
 .global screens
-.extern kernel_main
+.extern _main
 
 _start:
         mov 0x21cd4cff,%eax
 	mov $stack_top, %esp
-	call kernel_main
+	call _main
 	cli
 1:	hlt
 	jmp 1b
@@ -23,9 +23,4 @@ stack_bottom:
 .skip 16384 # 16 KiB
 stack_top:
 
-
-.section .text
-.global _start
-.global screens
-.extern kernel_main
 

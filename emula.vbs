@@ -1,7 +1,8 @@
-﻿MsgBox ("emul startup")
-     On Error Resume Next
-     Shell "c:\MinGW\bin\gcc -c kernel.c -o kernel.o -nostdlib"
-     Shell "c:\MinGW\bin\as boot.S -o boot.o"
-     Shell "c:\MinGW\bin\ld -T link.ld boot.o kernel.o -o kernels.o"
-     Shell "c:\MinGW\bin\objcopy -O elf-i386 kernels.o kernel.c32"
-     Shell "c:\MinGW\bin\qemu-x86_64 -kernel kernel.c32"
+Dim objShell
+Set objShell = WScript.CreateObject("WScript.Shell")
+objShell.Run ".\gcc.exe -c kernel.c -o .\kernel.o -nostdlib"
+objShell.Run ".\as.exe boot.S -o .\boot.o"
+objShell.Run ".\ld.exe -T link.ld boot.o kernel.o -o .\kernels.o"
+objShell.Run ".\objcopy.exe -O elf32-i386 kernels.o .\kernel.c32"
+objShell.Run ".\qemu-system-x86_64.exe -kernel .\kernel.c32"
+Set objShell = Nothing
