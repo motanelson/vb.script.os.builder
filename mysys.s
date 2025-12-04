@@ -23,12 +23,17 @@ wait_input_empty:
     in al,0x64
     test al,2              ; bit 1 = input buffer full
     jnz wait_input_empty
-;----------    
-    mov AX,4F02h
-    mov BX,0102h
-    int 10h
+    
+escs:    
+    mov ax,0x12
+    int 0x10
+    mov dx, 0x3C4
+    mov al,2
+    out dx,al
+    inc dx
+    mov al,14
+    out dx,al
     jmp kernel
-
 gdt_start:
 
 gdt_null:

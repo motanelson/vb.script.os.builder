@@ -5934,8 +5934,8 @@ void ppixel(int x, int y){
 }
 void cls(){
     int a=0;
-    for(a=0;a<65*1024;a++){
-        *((char*)(fbps + a)) = a & 0xf;
+    for(a=0;a<480*80;a++){
+        *((char*)(fbp + a)) = 0xff;
     }
 }
 void hline(int x, int y, int xx){
