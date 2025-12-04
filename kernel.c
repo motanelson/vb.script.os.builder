@@ -1,6 +1,6 @@
 #include "base.h"
 
-void kernel_main()
+int main()
 {
         int n=0;
         int xx;
@@ -19,5 +19,12 @@ void kernel_main()
 	
 	
 }
+int _main(){
+    main();
+}
 
+
+int __main(){
+    main();
+}
 
