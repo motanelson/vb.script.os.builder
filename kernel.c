@@ -34,10 +34,10 @@ int main(){
        cls();
        i=get_cs();
        int_to_string(i,c);
-       prints(c);
+       //prints(c);
        i=get_ds();
        int_to_string(i,c);
-       prints(c);
+       prints(cc);
        while(1){}
        exits();
 

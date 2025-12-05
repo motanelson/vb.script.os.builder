@@ -91,22 +91,24 @@ kernel:
 nop 
 
 b32:
-    mov ax, DATA_SEG
-    mov ds, ax
-    mov es, ax
+    mov ax, DATA_SEG   
     mov fs, ax
     mov gs, ax
     mov ss, ax
-
-    mov ebp, 0x90000
+    mov ax,8
+    mov ds, ax
+    mov es, ax
+    mov ebp, 0x80000
     mov esp, ebp
-;start eax ebx ecx edx to enter on program
+    
+    ;start eax ebx ecx edx to enter on program
     mov eax,0
     mov ebx,0
     mov ecx,0xf000
     mov edx,0
     mov esi,0
     mov edi,0
+    jmp outdoor
     ds
     call dword 0x10000
 exits:
@@ -118,4 +120,4 @@ spere:
 times  510-(spere-boots) db 0 
 signature:
 dw 0xaa55
-
+outdoor:
