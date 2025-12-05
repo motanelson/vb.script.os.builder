@@ -3,11 +3,13 @@ void printc(char b);
 void prints(char *c);
 void exits();
 void cls();
+void int_to_string(int value, char *str);
 int video=0xb8000;
 int main(){
-       char *c="hello world...";
+       char c[1024];
        video=0xb8000;
        cls();
+       int_to_string(10,c);
        prints(c);
        while(1){}
        exits();
@@ -57,4 +59,43 @@ unsigned int value=0x67;
         d[i] = 32;
         d[i+1] = value;
     }
+}
+void int_to_string(int value, char *str) {
+    char temp[12];
+    int i = 0;
+    int is_neg = 0;
+
+    // Tratar número zero
+    if (value == 0) {
+        str[0] = '0';
+        str[1] = '\0';
+        return;
+    }
+
+    // Tratar negativo
+    if (value < 0) {
+        is_neg = 1;
+        value = -value;
+    }
+
+    // Extrair dígitos ao contrário
+    while (value > 0) {
+        int digit = value % 10;
+        temp[i++] = '0' + digit;
+        value /= 10;
+    }
+
+    // Adicionar sinal se necessário
+    if (is_neg) {
+        temp[i++] = '-';
+    }
+
+    // Inverter para str final
+    int j = 0;
+    i--;
+    while (i >= 0) {
+        str[j++] = temp[i--];
+    }
+
+    str[j] = '\0';
 }
