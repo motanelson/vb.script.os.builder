@@ -5,11 +5,27 @@ void exits();
 void cls();
 void int_to_string(int value, char *str);
 int video=0xb8000;
+static inline unsigned short get_ds(void) {
+    unsigned short seg;
+    __asm__ __volatile__ (
+        "mov %%ds, %0"
+        : "=r"(seg)
+        :
+        :
+    );
+    return seg;
+}
 int main(){
        char c[1024];
+       char *cc="hello world.....";
+       int i=0;
        video=0xb8000;
        cls();
-       int_to_string(10,c);
+       i=get_ds();
+       int_to_string(i,c);
+       prints(c);
+       i=*cc;
+       int_to_string(i,c);
        prints(c);
        while(1){}
        exits();
@@ -29,7 +45,8 @@ void printc(char b)
 	*((char *)(fbp)) =(char)b;
 	*((char *)(fbp+1)) =(char)0x67;
 	video++;
-	video++;  
+	video++;
+          
         }
 
 void prints(char *c)
@@ -39,6 +56,7 @@ void prints(char *c)
 		printc(c[counter]);
 		counter++;
 	}
+        video=video +60;
 }
 void exits(){
     halts:
