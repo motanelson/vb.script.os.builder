@@ -15,16 +15,27 @@ static inline unsigned short get_ds(void) {
     );
     return seg;
 }
+static inline unsigned short get_cs(void) {
+    unsigned short seg;
+    __asm__ __volatile__ (
+        "mov %%cs, %0"
+        : "=r"(seg)
+        :
+        :
+    );
+    return seg;
+}
+
 int main(){
        char c[1024];
        char *cc="hello world.....";
        int i=0;
        video=0xb8000;
        cls();
-       i=get_ds();
+       i=get_cs();
        int_to_string(i,c);
        prints(c);
-       i=*cc;
+       i=get_ds();
        int_to_string(i,c);
        prints(c);
        while(1){}
