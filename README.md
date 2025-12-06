@@ -5,3 +5,8 @@ the link must be this one https://github.com/CosmosOS/Cosmos/tree/master/Build/T
 
 https://sourceforge.net/projects/mingw/
 
+
+https://www.nasm.us/pub/nasm/releasebuilds/
+
+
+insttall on c
