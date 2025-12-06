@@ -26,6 +26,15 @@ id              db      'FAT12   '
 eess            dw      0
 ees1            dw      0
 _start:
+escs:    
+    mov ax,0x12
+    int 0x10
+    mov dx, 0x3C4
+    mov al,2
+    out dx,al
+    inc dx
+    mov al,14
+    out dx,al
 ;load into 1000h:100h
     mov ax,0x1000
     mov bx,0h
